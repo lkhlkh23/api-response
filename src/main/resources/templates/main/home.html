@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>Crawler</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="form-group mr-2">
+            <button type="button" class="btn btn-primary" id="btn-1">Button-1</button>
+        </div>
+        <div class="form-group mr-2">
+            <button type="button" class="btn btn-primary" id="btn-2">Button-2</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <script type="">
+        $(document).ready(function () {
+            $('#btn-1').on('click', function() {
+                process('ex');
+            });
+            $('#btn-2').on('click', function() {
+                process('e');
+            });
+        });
+
+        function process(word) {
+            $.ajax({
+                type: 'GET',
+                url: '/keyword?word=' + word,
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log(response.data);
+                    console.log(response.message);
+                    console.log(response.status);
+                },
+                error: function (response) {
+                    console.log(response.responseJSON.data);
+                    console.log(response.responseJSON.message);
+                    console.log(response.responseJSON.status);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
